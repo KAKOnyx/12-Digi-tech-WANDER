@@ -88,6 +88,8 @@ animations = [{
 
 [node name="fox" type="CharacterBody2D"]
 scale = Vector2(1.63447, 1.63447)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_6b4yp")
 
 [node name="fox_collision" type="CollisionShape2D" parent="."]

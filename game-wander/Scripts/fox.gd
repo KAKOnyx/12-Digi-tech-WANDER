@@ -1,0 +1,36 @@
+extends CharacterBody2D
+
+const SPEED: float = 500.0
+
+var flipped_x: bool = false
+@onready var anim = $AnimatedSprite2D as AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var v_direction: float = Input.get_axis("ui_up", "ui_down")
+	var h_direction: float = Input.get_axis("ui_left", "ui_right")
+	
+	var direction: Vector2 = Vector2(h_direction, v_direction).normalized()
+	velocity = direction * SPEED
+	velocity - Vector2(SPEED * h_direction, SPEED * v_direction)
+
+	move_and_slide()
+	
+	
+	
+	if Input.is_action_pressed("ui_right"):
+		anim.play("right")
+	elif Input.is_action_pressed("ui_left"):
+		anim.play("left")
+	elif Input.is_action_pressed("ui_up"):
+		anim.play("up")
+	elif Input.is_action_pressed("ui_down"):
+		anim.play("down")
+	else:
+		anim.stop()

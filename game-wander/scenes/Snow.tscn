@@ -29,7 +29,7 @@ sources/0 = SubResource("TileSetAtlasSource_tdhkd")
 [node name="world" type="Node2D"]
 
 [node name="player" type="Node2D" parent="."]
-position = Vector2(10182, -935)
+position = Vector2(-20, -17)
 
 [node name="fox" parent="player" instance=ExtResource("1_of2i5")]
 z_index = 1

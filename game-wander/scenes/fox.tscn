@@ -99,7 +99,7 @@ scale = Vector2(1, 0.32)
 shape = SubResource("CircleShape2D_72oow")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 3
+z_index = 1
 texture_filter = 1
 position = Vector2(7.34183, 4.76837e-07)
 scale = Vector2(0.691194, 0.691194)

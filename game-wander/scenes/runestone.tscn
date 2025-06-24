@@ -6,10 +6,8 @@
 offset = Vector2(-424, -371)
 polygon = PackedVector2Array(534, 180, 380, 177, 315, 309, 314, 443, 327, 561, 520, 570, 546, 469, 520, 355, 552, 261)
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-z_index = 1
-polygon = PackedVector2Array(-97, 190, 95, 199, 123, 98, 105, 25, -7, 47, -110, 44, -109, 76)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+z_index = -1
+polygon = PackedVector2Array(-99, 190, -110, 61, 56, 90, 107, 29, 123, 100, 97, 197)

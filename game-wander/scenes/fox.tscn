@@ -104,4 +104,4 @@ texture_filter = 1
 position = Vector2(7.34183, 4.76837e-07)
 scale = Vector2(0.691194, 0.691194)
 sprite_frames = SubResource("SpriteFrames_35nom")
-animation = &"up"
+animation = &"right"

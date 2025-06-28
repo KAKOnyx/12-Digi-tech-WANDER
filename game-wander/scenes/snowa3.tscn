@@ -18,6 +18,7 @@ sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 [node name="world" type="Node2D"]
 
 [node name="player" type="Node2D" parent="."]
+position = Vector2(-423, -550)
 
 [node name="fox" parent="player" instance=ExtResource("1_kw5jc")]
 position = Vector2(578, 323)

@@ -13,6 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	# Movement
 	var v_direction: float = Input.get_axis("ui_up", "ui_down")
 	var h_direction: float = Input.get_axis("ui_left", "ui_right")
 	
@@ -23,7 +24,7 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 	
 	
-	
+	# Movement animation
 	if Input.is_action_pressed("ui_right"):
 		anim.play("right")
 	elif Input.is_action_pressed("ui_left"):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://beja8eqb0gxp7"]
 
-[ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_cvy0w"]
+[ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_shlfi"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_otp5p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
@@ -16,14 +16,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [node name="world" type="Node2D"]
-
-[node name="player" type="Node2D" parent="."]
-position = Vector2(2278, 264)
-
-[node name="fox" parent="player" instance=ExtResource("1_cvy0w")]
-position = Vector2(578, 323)
-
-[node name="Camera2D" type="Camera2D" parent="player/fox"]
+script = ExtResource("1_shlfi")
 
 [node name="tilemap" type="Node2D" parent="."]
 

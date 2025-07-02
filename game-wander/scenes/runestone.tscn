@@ -1,14 +1,28 @@
-[gd_scene format=3 uid="uid://dcud2hmwbfujp"]
+[gd_scene load_steps=3 format=3 uid="uid://dcud2hmwbfujp"]
+
+[ext_resource type="Script" uid="uid://pevcrx8pgang" path="res://scenes/detectionarea.gd" id="1_htxek"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iktvd"]
+radius = 459.053
 
 [node name="runestone" type="Node2D"]
 z_index = 2
+metadata/snow = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, -38)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 z_index = -1
 polygon = PackedVector2Array(-99, 190, -107, 66, 56, 90, 107, 35, 123, 100, 97, 197)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(1, -38)
 offset = Vector2(-424, -371)
 polygon = PackedVector2Array(534, 180, 380, 177, 315, 309, 314, 443, 327, 561, 520, 570, 546, 469, 520, 355, 552, 261)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_htxek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_iktvd")

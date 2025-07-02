@@ -1,4 +1,7 @@
+class_name Player
+
 extends CharacterBody2D
+
 
 const SPEED: float = 500.0
 
@@ -35,3 +38,8 @@ func _process(_delta: float) -> void:
 		anim.play("down")
 	else:
 		anim.stop()
+
+
+func _on_runestone_entered(area: Area2D) -> void:
+	if area.has_meta("snow"):
+			get_tree().call_deferred("change_scene_to_file", area.next_level)

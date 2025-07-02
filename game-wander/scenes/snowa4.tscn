@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://85y7h22n5eec"]
 
-[ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_1pn4e"]
+[ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_vlsbs"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_h4bgi"]
 [ext_resource type="PackedScene" uid="uid://dcud2hmwbfujp" path="res://scenes/runestone.tscn" id="3_vlsbs"]
 
@@ -17,14 +17,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [node name="world" type="Node2D"]
-
-[node name="player" type="Node2D" parent="."]
-position = Vector2(795, -1608)
-
-[node name="fox" parent="player" instance=ExtResource("1_1pn4e")]
-position = Vector2(578, 323)
-
-[node name="Camera2D" type="Camera2D" parent="player/fox"]
+script = ExtResource("1_vlsbs")
 
 [node name="tilemap" type="Node2D" parent="."]
 
@@ -48,4 +41,4 @@ tile_map_data = PackedByteArray("AAAAAK7/AAABAAAAAAAAAK//AAABAAAAAAAAALD/AAABAAA
 tile_set = SubResource("TileSet_qwnfh")
 
 [node name="runestone" parent="." instance=ExtResource("3_vlsbs")]
-position = Vector2(1382, -502)
+position = Vector2(1401, -512)

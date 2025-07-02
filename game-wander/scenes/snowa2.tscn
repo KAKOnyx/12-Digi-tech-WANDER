@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bhbj0chawh486"]
+[gd_scene load_steps=8 format=4 uid="uid://bhbj0chawh486"]
 
-[ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_fmou8"]
+[ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_kx5xj"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_2dioc"]
+[ext_resource type="PackedScene" uid="uid://b2rqttixl2wld" path="res://scenes/snowb2.tscn" id="2_txpi5"]
+[ext_resource type="PackedScene" uid="uid://di836vpwaendw" path="res://scenes/snowa3.tscn" id="3_vgr4r"]
+[ext_resource type="PackedScene" uid="uid://df2boxwavgapw" path="res://scenes/snowa1.tscn" id="4_52gs3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
 texture = ExtResource("2_2dioc")
@@ -16,14 +19,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [node name="world" type="Node2D"]
-
-[node name="player" type="Node2D" parent="."]
-position = Vector2(0, -1313)
-
-[node name="fox" parent="player" instance=ExtResource("1_fmou8")]
-position = Vector2(578, 323)
-
-[node name="Camera2D" type="Camera2D" parent="player/fox"]
+script = ExtResource("1_kx5xj")
+top = ExtResource("2_txpi5")
+right = ExtResource("3_vgr4r")
+left = ExtResource("4_52gs3")
 
 [node name="tilemap" type="Node2D" parent="."]
 

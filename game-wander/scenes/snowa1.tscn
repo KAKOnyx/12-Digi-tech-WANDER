@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://df2boxwavgapw"]
+[gd_scene load_steps=5 format=4 uid="uid://df2boxwavgapw"]
 
-[ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_1ddhw"]
-[ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/snowa_1.gd" id="1_vjkve"]
+[ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_vjkve"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_hupq1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
@@ -18,14 +17,6 @@ sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_vjkve")
-
-[node name="player" type="Node2D" parent="."]
-position = Vector2(1165, -644)
-
-[node name="fox" parent="player" instance=ExtResource("1_1ddhw")]
-position = Vector2(578, 323)
-
-[node name="Camera2D" type="Camera2D" parent="player/fox"]
 
 [node name="tilemap" type="Node2D" parent="."]
 

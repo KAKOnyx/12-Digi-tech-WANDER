@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://85y7h22n5eec"]
+[gd_scene load_steps=8 format=4 uid="uid://85y7h22n5eec"]
 
 [ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_vlsbs"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_h4bgi"]
 [ext_resource type="PackedScene" uid="uid://dcud2hmwbfujp" path="res://scenes/runestone.tscn" id="3_vlsbs"]
+[ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="4_ditiq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
 texture = ExtResource("2_h4bgi")
@@ -15,6 +16,9 @@ texture = ExtResource("2_h4bgi")
 [sub_resource type="TileSet" id="TileSet_qwnfh"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cwtjd")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xbx6m"]
+radius = 459.053
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_vlsbs")
@@ -41,4 +45,11 @@ tile_map_data = PackedByteArray("AAAAAK7/AAABAAAAAAAAAK//AAABAAAAAAAAALD/AAABAAA
 tile_set = SubResource("TileSet_qwnfh")
 
 [node name="runestone" parent="." instance=ExtResource("3_vlsbs")]
-position = Vector2(1401, -512)
+position = Vector2(1394, -573)
+
+[node name="Area2D" type="Area2D" parent="runestone"]
+script = ExtResource("4_ditiq")
+metadata/snow = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="runestone/Area2D"]
+shape = SubResource("CircleShape2D_xbx6m")

@@ -42,4 +42,5 @@ func _process(_delta: float) -> void:
 
 func _on_runestone_entered(area: Area2D) -> void:
 	if area.has_meta("snow"):
+
 			get_tree().call_deferred("change_scene_to_file", area.next_level)

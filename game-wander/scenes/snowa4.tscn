@@ -22,6 +22,8 @@ radius = 459.053
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_vlsbs")
+top = "uid://bpdf5826kurfv"
+left = "uid://di836vpwaendw"
 
 [node name="tilemap" type="Node2D" parent="."]
 

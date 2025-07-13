@@ -2,7 +2,7 @@
 
 extends Node2D
 
-@export var top: PackedScene
-@export var right: PackedScene
-@export var left: PackedScene
-@export var bottom: PackedScene
+@export_file("*.tscn") var top: String
+@export_file("*.tscn") var bottom: String
+@export_file("*.tscn") var left: String
+@export_file("*.tscn") var right: String

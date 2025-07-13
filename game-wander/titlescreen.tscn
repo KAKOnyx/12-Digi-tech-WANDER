@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://drujqnxgrmu1l"]
+[gd_scene load_steps=2 format=3 uid="uid://drujqnxgrmu1l"]
+
+[ext_resource type="Texture2D" uid="uid://ba3x5qhth36vc" path="res://art/image.png" id="1_cjnew"]
 
 [node name="Titlescreen" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = -20.0
+offset_right = 9.0
+offset_bottom = 20.0
+scale = Vector2(30.08, 17.2)
+color = Color(2.58703e-07, 0.112004, 0.168547, 1)
+
+[node name="Image" type="Sprite2D" parent="."]
+position = Vector2(575, 323)
+scale = Vector2(0.184222, 0.184222)
+texture = ExtResource("1_cjnew")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 969.0
+offset_top = 13.0
+offset_right = 1024.0
+offset_bottom = 68.0

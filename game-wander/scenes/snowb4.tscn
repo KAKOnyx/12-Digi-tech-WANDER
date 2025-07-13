@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://bpdf5826kurfv"]
+[gd_scene load_steps=5 format=4 uid="uid://bpdf5826kurfv"]
 
+[ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_f7o7e"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_lt8g5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
@@ -15,6 +16,9 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_f7o7e")
+bottom = "uid://dsydk7757hfou"
+left = "uid://dsydk7757hfou"
 
 [node name="tilemap" type="Node2D" parent="."]
 

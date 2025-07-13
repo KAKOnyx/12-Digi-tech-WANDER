@@ -17,6 +17,9 @@ sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_7wpmy")
+bottom = "uid://di836vpwaendw"
+left = "uid://b2rqttixl2wld"
+right = "uid://bpdf5826kurfv"
 
 [node name="tilemap" type="Node2D" parent="."]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drujqnxgrmu1l"]
 
-[ext_resource type="Texture2D" uid="uid://ba3x5qhth36vc" path="res://art/image.png" id="1_cjnew"]
+[ext_resource type="Texture2D" uid="uid://ba3x5qhth36vc" path="res://art/image.png" id="1_6d6rd"]
 
 [node name="Titlescreen" type="Node2D"]
 
@@ -15,7 +15,7 @@ color = Color(2.58703e-07, 0.112004, 0.168547, 1)
 [node name="Image" type="Sprite2D" parent="."]
 position = Vector2(575, 323)
 scale = Vector2(0.184222, 0.184222)
-texture = ExtResource("1_cjnew")
+texture = ExtResource("1_6d6rd")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 969.0

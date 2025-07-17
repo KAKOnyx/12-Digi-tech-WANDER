@@ -3,7 +3,7 @@ class_name Player
 extends CharacterBody2D
 
 
-const SPEED: float = 500.0
+const SPEED: float = 350.0
 
 var flipped_x: bool = false
 @onready var anim = $AnimatedSprite2D as AnimatedSprite2D

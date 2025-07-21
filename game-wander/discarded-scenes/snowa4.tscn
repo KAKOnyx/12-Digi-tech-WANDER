@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://85y7h22n5eec"]
+[gd_scene load_steps=9 format=4 uid="uid://85y7h22n5eec"]
 
 [ext_resource type="Script" uid="uid://bivyowca32ocj" path="res://Scripts/mapdirection.gd" id="1_vlsbs"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_h4bgi"]
 [ext_resource type="PackedScene" uid="uid://dcud2hmwbfujp" path="res://scenes/runestone.tscn" id="3_vlsbs"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="4_ditiq"]
+[ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="5_itb2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
 texture = ExtResource("2_h4bgi")
@@ -51,7 +52,13 @@ position = Vector2(1394, -573)
 
 [node name="Area2D" type="Area2D" parent="runestone"]
 script = ExtResource("4_ditiq")
-metadata/snow = false
+next_level = "res://scenes/desert.tscn"
+metadata/snow = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="runestone/Area2D"]
 shape = SubResource("CircleShape2D_xbx6m")
+
+[node name="fox" parent="." instance=ExtResource("5_itb2x")]
+position = Vector2(1360, -1172)
+
+[node name="Camera2D" type="Camera2D" parent="fox"]

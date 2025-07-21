@@ -11,12 +11,8 @@ config_version=5
 [application]
 
 config/name="game-WANDER"
-run/main_scene="res://scenes/Snow.tscn"
+run/main_scene="uid://drujqnxgrmu1l"
 config/features=PackedStringArray("4.4", "Forward Plus")
-
-[display]
-
-window/stretch/mode="viewport"
 
 [input]
 

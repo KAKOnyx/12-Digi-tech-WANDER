@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iwyq65qx8arh"
-path="res://.godot/imported/map.png-9eea34967fae34f4388f4a32a16da936.ctex"
+uid="uid://d2cksegh2x6uw"
+path="res://.godot/imported/desert.png-76ee9b95734c41ad10aa41759f7754b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map.png"
-dest_files=["res://.godot/imported/map.png-9eea34967fae34f4388f4a32a16da936.ctex"]
+source_file="res://art/desert.png"
+dest_files=["res://.godot/imported/desert.png-76ee9b95734c41ad10aa41759f7754b8.ctex"]
 
 [params]
 

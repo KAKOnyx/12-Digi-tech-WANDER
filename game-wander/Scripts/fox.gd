@@ -44,3 +44,12 @@ func _on_runestone_entered(area: Area2D) -> void:
 	if area.has_meta("snow"):
 
 			get_tree().call_deferred("change_scene_to_file", area.next_level)
+
+
+
+
+
+func _on_runeston_area_entered(area: Area2D) -> void:
+	if area.has_meta("nextlevel"):
+
+			get_tree().call_deferred("change_scene_to_file", area.next_level)

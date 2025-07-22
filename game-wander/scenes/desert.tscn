@@ -42,7 +42,7 @@ position = Vector2(0, 16)
 
 [node name="Area2D" type="Area2D" parent="next level"]
 script = ExtResource("4_4tv1n")
-next_level = "res://scenes/Snow.tscn"
+next_level = "res://scenes/titlescreen.tscn"
 metadata/snow = false
 metadata/nextlevel = true
 

@@ -9,6 +9,10 @@ var flipped_x: bool = false
 @onready var anim = $AnimatedSprite2D as AnimatedSprite2D
 
 
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -27,7 +31,7 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 	
 	
-	# Movement animation
+	# Movement animated sprite
 	if Input.is_action_pressed("ui_right"):
 		anim.play("right")
 	elif Input.is_action_pressed("ui_left"):
@@ -38,18 +42,22 @@ func _process(_delta: float) -> void:
 		anim.play("down")
 	else:
 		anim.stop()
+	
+	
+	
 
 
+
+
+
+
+
+
+
+
+
+# next level function
 func _on_runestone_entered(area: Area2D) -> void:
-	if area.has_meta("snow"):
-
-			get_tree().call_deferred("change_scene_to_file", area.next_level)
-
-
-
-
-
-func _on_runeston_area_entered(area: Area2D) -> void:
 	if area.has_meta("nextlevel"):
 
 			get_tree().call_deferred("change_scene_to_file", area.next_level)

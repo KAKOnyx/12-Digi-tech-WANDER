@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_df35n"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_of2i5"]
-[ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (4).png" id="2_wjc5r"]
+[ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_wjc5r"]
 [ext_resource type="Texture2D" uid="uid://ciq1cph4wtl6v" path="res://art/snow.png" id="3_wjc5r"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="4_r0fbq"]
 

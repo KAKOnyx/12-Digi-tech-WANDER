@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bytqhuq2xb23d"]
+[gd_scene load_steps=16 format=3 uid="uid://bytqhuq2xb23d"]
 
 [ext_resource type="Script" uid="uid://b47reluksfeil" path="res://Scripts/fox.gd" id="1_6b4yp"]
 [ext_resource type="Texture2D" uid="uid://bc4sypjpqnvx2" path="res://art/foxspritesheet.png" id="1_q320a"]
-[ext_resource type="Texture2D" uid="uid://c23d5ycqf5ci2" path="res://art/foxspritesheet(1).png" id="3_35nom"]
+[ext_resource type="Texture2D" uid="uid://c23d5ycqf5ci2" path="res://art/foxspritesheet(2).png" id="3_35nom"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_72oow"]
 radius = 31.0161
@@ -88,11 +88,16 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_35nom"]
 
-[node name="fox" type="CharacterBody2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_35nom"]
+font_color = Color(0.0745098, 0, 1, 1)
+
+[node name="fox" type="CharacterBody2D" node_paths=PackedStringArray("ui", "second_ui")]
 scale = Vector2(1.63447, 1.63447)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_6b4yp")
+ui = NodePath("CanvasLayer/Label")
+second_ui = NodePath("CanvasLayer/Label2")
 
 [node name="fox_collision" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -115,5 +120,27 @@ position = Vector2(6.73001, 0)
 scale = Vector2(3.1536, 1)
 shape = SubResource("CircleShape2D_35nom")
 
-[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 449.0
+offset_top = 21.0
+offset_right = 613.0
+offset_bottom = 44.0
+text = "THIS LABEL HAS TEXT"
+label_settings = SubResource("LabelSettings_35nom")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 903.0
+offset_top = 26.0
+offset_right = 1124.0
+offset_bottom = 49.0
+text = "A second label has appeared"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]
+[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]

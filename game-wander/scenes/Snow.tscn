@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_df35n"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_of2i5"]
-[ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (4).png" id="2_wjc5r"]
 [ext_resource type="Texture2D" uid="uid://byljd14h5c2fd" path="res://art/snow(path).png" id="3_df35n"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="4_r0fbq"]
 [ext_resource type="PackedScene" uid="uid://cbxhv5ptxtwkh" path="res://scenes/fragment.tscn" id="6_kym1w"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_df35n"]
+load_path = "res://.godot/imported/pixil-frame-0 (4).png-3cf1081d8e66bdcf3ff9c4da87493a77.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8citc"]
-texture = ExtResource("2_wjc5r")
+texture = SubResource("CompressedTexture2D_df35n")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0

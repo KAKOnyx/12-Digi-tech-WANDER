@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bytqhuq2xb23d"]
+[gd_scene load_steps=15 format=3 uid="uid://bytqhuq2xb23d"]
 
 [ext_resource type="Script" uid="uid://b47reluksfeil" path="res://Scripts/fox.gd" id="1_6b4yp"]
 [ext_resource type="Texture2D" uid="uid://bc4sypjpqnvx2" path="res://art/foxspritesheet.png" id="1_q320a"]
-[ext_resource type="Texture2D" uid="uid://c23d5ycqf5ci2" path="res://art/foxspritesheet(2).png" id="3_35nom"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_72oow"]
 radius = 31.0161
@@ -12,7 +11,6 @@ atlas = ExtResource("1_q320a")
 region = Rect2(128, 0, 32, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5q2l"]
-atlas = ExtResource("3_35nom")
 region = Rect2(128, 0, 32, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufccv"]
@@ -20,7 +18,6 @@ atlas = ExtResource("1_q320a")
 region = Rect2(0, 32, 98, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ael4"]
-atlas = ExtResource("3_35nom")
 region = Rect2(0, 32, 96, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3u0el"]
@@ -28,7 +25,6 @@ atlas = ExtResource("1_q320a")
 region = Rect2(0, 64, 98, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2g4xt"]
-atlas = ExtResource("3_35nom")
 region = Rect2(1, 64, 96, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brrv0"]
@@ -36,7 +32,6 @@ atlas = ExtResource("1_q320a")
 region = Rect2(97, 0, 32, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8a3a"]
-atlas = ExtResource("3_35nom")
 region = Rect2(96, 0, 32, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_35nom"]
@@ -141,6 +136,6 @@ offset_bottom = 49.0
 text = "A second label has appeared"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]
-[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]

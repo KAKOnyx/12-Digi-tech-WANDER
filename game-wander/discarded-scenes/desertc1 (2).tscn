@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://caa1olc8ut4lx"]
+[gd_scene load_steps=5 format=4 uid="uid://crcgybe05anmo"]
 
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="2_kg7mx"]
 [ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (3).png" id="2_uodx6"]

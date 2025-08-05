@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b47reluksfeil" path="res://Scripts/fox.gd" id="1_6b4yp"]
 [ext_resource type="Texture2D" uid="uid://bc4sypjpqnvx2" path="res://art/foxspritesheet.png" id="1_q320a"]
+[ext_resource type="Texture2D" uid="uid://dccsx1b5lx3xr" path="res://art/foxspritesheet(2).png" id="3_35nom"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_72oow"]
 radius = 31.0161
@@ -11,6 +12,7 @@ atlas = ExtResource("1_q320a")
 region = Rect2(128, 0, 32, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5q2l"]
+atlas = ExtResource("3_35nom")
 region = Rect2(128, 0, 32, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufccv"]
@@ -18,21 +20,24 @@ atlas = ExtResource("1_q320a")
 region = Rect2(0, 32, 98, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ael4"]
-region = Rect2(0, 32, 96, 32)
+atlas = ExtResource("3_35nom")
+region = Rect2(0, 32, 98, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3u0el"]
 atlas = ExtResource("1_q320a")
 region = Rect2(0, 64, 98, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2g4xt"]
-region = Rect2(1, 64, 96, 32)
+atlas = ExtResource("3_35nom")
+region = Rect2(0, 64, 98, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brrv0"]
 atlas = ExtResource("1_q320a")
 region = Rect2(97, 0, 32, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8a3a"]
-region = Rect2(96, 0, 32, 96)
+atlas = ExtResource("3_35nom")
+region = Rect2(97, 0, 32, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_35nom"]
 animations = [{
@@ -83,16 +88,11 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_35nom"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_35nom"]
-font_color = Color(0.0745098, 0, 1, 1)
-
-[node name="fox" type="CharacterBody2D" node_paths=PackedStringArray("ui", "second_ui")]
+[node name="fox" type="CharacterBody2D"]
 scale = Vector2(1.63447, 1.63447)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_6b4yp")
-ui = NodePath("CanvasLayer/Label")
-second_ui = NodePath("CanvasLayer/Label2")
 
 [node name="fox_collision" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -106,7 +106,7 @@ texture_filter = 1
 position = Vector2(7.34183, 4.76837e-07)
 scale = Vector2(0.691194, 0.691194)
 sprite_frames = SubResource("SpriteFrames_35nom")
-animation = &"right"
+animation = &"down"
 
 [node name="player_collision" type="Area2D" parent="."]
 
@@ -114,27 +114,6 @@ animation = &"right"
 position = Vector2(6.73001, 0)
 scale = Vector2(3.1536, 1)
 shape = SubResource("CircleShape2D_35nom")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 3
-follow_viewport_enabled = true
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 449.0
-offset_top = 21.0
-offset_right = 613.0
-offset_bottom = 44.0
-text = "THIS LABEL HAS TEXT"
-label_settings = SubResource("LabelSettings_35nom")
-metadata/_edit_use_anchors_ = true
-
-[node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = 903.0
-offset_top = 26.0
-offset_right = 1124.0
-offset_bottom = 49.0
-text = "A second label has appeared"
-metadata/_edit_use_anchors_ = true
 
 [connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]

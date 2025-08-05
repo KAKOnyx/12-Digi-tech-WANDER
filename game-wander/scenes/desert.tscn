@@ -1,21 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxqbuq1580br5"]
+[gd_scene load_steps=5 format=3 uid="uid://cxqbuq1580br5"]
 
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_cyhdl"]
-[ext_resource type="Texture2D" uid="uid://bfyoa5rg12gn5" path="res://art/pixil-frame-0 (4).png" id="2_wnm7i"]
-[ext_resource type="Texture2D" uid="uid://d2cksegh2x6uw" path="res://art/desert.png" id="3_wnm7i"]
+[ext_resource type="Texture2D" uid="uid://d2cksegh2x6uw" path="res://art/desert.png" id="2_wnm7i"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="4_4tv1n"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwtjd"]
-texture = ExtResource("2_wnm7i")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_qwnfh"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_cwtjd")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjswm"]
 radius = 13.2362
@@ -33,14 +20,7 @@ position = Vector2(-9674, 2383)
 [node name="art" type="Node2D" parent="."]
 
 [node name="Desert" type="Sprite2D" parent="art"]
-z_index = -1
-texture = ExtResource("3_wnm7i")
-
-[node name="tilemap" type="Node2D" parent="."]
-
-[node name="borders" type="TileMapLayer" parent="tilemap"]
-position = Vector2(-4880, 1640)
-tile_set = SubResource("TileSet_qwnfh")
+texture = ExtResource("2_wnm7i")
 
 [node name="next level" type="Node2D" parent="."]
 position = Vector2(0, 16)

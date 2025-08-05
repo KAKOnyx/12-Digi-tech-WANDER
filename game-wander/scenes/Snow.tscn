@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d37bxlq1p2ra"]
+[gd_scene load_steps=11 format=4 uid="uid://d37bxlq1p2ra"]
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_df35n"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_of2i5"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cbxhv5ptxtwkh" path="res://scenes/fragment.tscn" id="6_kym1w"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_df35n"]
-load_path = "res://.godot/imported/pixil-frame-0 (4).png-3cf1081d8e66bdcf3ff9c4da87493a77.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8citc"]
 texture = SubResource("CompressedTexture2D_df35n")
@@ -27,17 +26,16 @@ radius = 13.2362
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0fbq"]
 size = Vector2(2096, 1262.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_kym1w"]
-font_color = Color(0.0745098, 0, 1, 1)
-
 [node name="world" type="Node2D"]
 script = ExtResource("1_df35n")
 
 [node name="player" type="Node2D" parent="."]
 position = Vector2(-3770, -112)
 
-[node name="fox" parent="player" instance=ExtResource("1_of2i5")]
+[node name="fox" parent="player" node_paths=PackedStringArray("ui", "second_ui") instance=ExtResource("1_of2i5")]
 z_index = 3
+ui = NodePath("../../CanvasLayer/Label")
+second_ui = NodePath("../../CanvasLayer/Label2")
 metadata/player = true
 
 [node name="Camera2D2" type="Camera2D" parent="player/fox"]
@@ -89,30 +87,40 @@ position = Vector2(5389, 905)
 position = Vector2(16, 29.25)
 shape = SubResource("RectangleShape2D_r0fbq")
 
-[node name="fragment" parent="." instance=ExtResource("6_kym1w")]
-position = Vector2(-3450, -160)
+[node name="fragments" type="Node2D" parent="."]
+
+[node name="fragment" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(-5829, -1151)
 scale = Vector2(1.63447, 1.63447)
+
+[node name="fragment2" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(3938, 25)
+
+[node name="fragment3" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(-3471, -204)
+
+[node name="fragment4" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(-3307, -347)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
 follow_viewport_enabled = true
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = -4269.0
-offset_top = -392.0
-offset_right = -4105.0
-offset_bottom = -369.0
-text = "THIS LABEL HAS TEXT"
-label_settings = SubResource("LabelSettings_kym1w")
-metadata/_edit_use_anchors_ = true
+offset_left = -3619.0
+offset_top = -286.0
+offset_right = -3564.0
+offset_bottom = -263.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+text = "Label 1"
 
 [node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = -3894.0
-offset_top = -324.0
-offset_right = -3673.0
-offset_bottom = -301.0
-text = "A second label has appeared"
-metadata/_edit_use_anchors_ = true
+offset_left = -3562.0
+offset_top = -339.0
+offset_right = -3511.0
+offset_bottom = -316.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "label 2"
 
 [connection signal="area_entered" from="next level/Area2D" to="player/fox" method="_on_runeston_area_entered"]
 [connection signal="body_entered" from="collisions/camera zoom" to="." method="_on_zoom_area_entered"]

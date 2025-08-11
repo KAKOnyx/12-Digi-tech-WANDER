@@ -97,6 +97,7 @@ script = ExtResource("1_6b4yp")
 [node name="fox_collision" type="CollisionShape2D" parent="."]
 z_index = 1
 position = Vector2(7, 0)
+rotation = 1.5708
 scale = Vector2(1, 0.32)
 shape = SubResource("CircleShape2D_72oow")
 
@@ -110,8 +111,9 @@ animation = &"down"
 
 [node name="player_collision" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_collision"]
+[node name="player_collison_shape" type="CollisionShape2D" parent="player_collision"]
 position = Vector2(6.73001, 0)
+rotation = 1.5708
 scale = Vector2(3.1536, 1)
 shape = SubResource("CircleShape2D_35nom")
 

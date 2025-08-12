@@ -3,17 +3,16 @@ class_name Fox
 extends CharacterBody2D
 
 
-const SPEED: float = 350.0
+const SPEED: float = 300.0
 
 
 var fragment_score : int = 0
 @export var ui : Node
-@export var second_ui: Node
 
 var flipped_x: bool = false
-@onready var anim = $AnimatedSprite2D as AnimatedSprite2D
+@onready var anim = $AnimatedSprite2D as AnimatedSprite2D 
 @onready var fox_col = $fox_collision as CollisionShape2D #colliding with objects
-@onready var play_col = $player_collision/player_collison_shape as CollisionShape2D
+@onready var play_col = $player_collision/player_collison_shape as CollisionShape2D #interacting with objects
 
 
 
@@ -36,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 	
-	# Movement for animated sprite
+	# direction/rotation based on movement input for animated sprite and collision shapes
 	if Input.is_action_pressed("ui_right"):
 		anim.play("right")
 		fox_col.rotation = deg_to_rad(0)
@@ -57,23 +56,13 @@ func _physics_process(_delta: float) -> void:
 		anim.stop()
 
 
-
+# collecting and counting fragments
 func _on_fragment_touched(area: Area2D) -> void:
 	if area.has_meta("fragment"):
 		fragment_score += 1
 		ui.text = str(fragment_score)
 		print(fragment_score)
 		area.queue_free()
-
-
-
-
-
-
-
-
-
-
 
 
 # next level function

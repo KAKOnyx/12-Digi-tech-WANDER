@@ -117,6 +117,6 @@ rotation = 1.5708
 scale = Vector2(3.1536, 1)
 shape = SubResource("CircleShape2D_35nom")
 
-[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]
+[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://d37bxlq1p2ra"]
+[gd_scene load_steps=13 format=4 uid="uid://d37bxlq1p2ra"]
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_df35n"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_of2i5"]
 [ext_resource type="Texture2D" uid="uid://byljd14h5c2fd" path="res://art/snow(path).png" id="3_df35n"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="4_r0fbq"]
+[ext_resource type="AudioStream" uid="uid://brus6he6idopv" path="res://Comfortable Mystery 2.mp3" id="6_4ktnu"]
 [ext_resource type="PackedScene" uid="uid://cbxhv5ptxtwkh" path="res://scenes/fragment.tscn" id="6_kym1w"]
+[ext_resource type="AudioStream" uid="uid://xwiw0hncanjt" path="res://footsteps-in-snow-102043.mp3" id="7_4ktnu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_df35n"]
 
@@ -20,23 +22,36 @@ texture = SubResource("CompressedTexture2D_df35n")
 physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_8citc")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_df35n"]
+radius = 776.01
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjc5r"]
 radius = 13.2362
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0fbq"]
-size = Vector2(2096, 1262.5)
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_df35n")
 camera = NodePath("player/fox/Camera2D")
 
-[node name="player" type="Node2D" parent="."]
-position = Vector2(-3673, -315)
+[node name="UI" type="Node2D" parent="."]
 
-[node name="fox" parent="player" node_paths=PackedStringArray("ui", "second_ui") instance=ExtResource("1_of2i5")]
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+layer = 4
+
+[node name="Label" type="Label" parent="UI/CanvasLayer"]
+offset_left = 32.0
+offset_top = 29.0
+offset_right = 87.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.929924, 0.414413, 5.77569e-07, 1)
+theme_override_font_sizes/font_size = 40
+text = "Fragments"
+
+[node name="player" type="Node2D" parent="."]
+position = Vector2(-5893, 1230)
+
+[node name="fox" parent="player" node_paths=PackedStringArray("ui") instance=ExtResource("1_of2i5")]
 z_index = 3
-ui = NodePath("../../CanvasLayer/Label")
-second_ui = NodePath("")
+ui = NodePath("../../UI/CanvasLayer/Label")
 metadata/player = true
 
 [node name="Camera2D" type="Camera2D" parent="player/fox"]
@@ -60,6 +75,35 @@ tile_map_data = PackedByteArray("AAC//wsAAwAAAAAAAAC//woAAwAAAAAAAAC+/wkAAwAAAAA
 enabled = false
 tile_set = SubResource("TileSet_egsxx")
 
+[node name="fragments" type="Node2D" parent="."]
+
+[node name="fragment" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(-5829, -1151)
+scale = Vector2(1.63447, 1.63447)
+
+[node name="fragment2" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(3938, 25)
+
+[node name="fragment3" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(-4901, 602)
+
+[node name="fragment4" parent="fragments" instance=ExtResource("6_kym1w")]
+position = Vector2(-418, -1219)
+
+[node name="collisions" type="Node2D" parent="."]
+
+[node name="border" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions/border"]
+polygon = PackedVector2Array(-6788, -1824, -4896, -1851, -3527, -1740, -2077, -1851, -1381, -1785, -1285, -1659, -1107, -1755, -686, -1874, -5, -1844, 299, -1711, 1164, -1555, 2541, -1622, 3858, -1829, 4339, -1755, 5850, -1568, 6717, -1411, 6805, -849, 6805, -91, 6756, 441, 6746, 1062, 6717, 1663, 6460, 1800, 5535, 1938, 4924, 1840, 4520, 1643, 4530, 1200, 3978, 1357, 3446, 1702, 2511, 1988, 1319, 1850, 560, 1338, -80, 944, -1006, 1121, -1646, 1416, -2808, 1387, -3793, 1436, -4443, 1603, -4906, 1810, -5546, 1889, -6256, 1830, -6492, 1584, -6758, 806, -6640, 372, -6561, -376, -6738, -1420, -6797, -1755, -6561, -2317, -7428, -2258, -7763, 2047, -6118, 2667, 1427, 2697, 7199, 2470, 7642, 983, 7288, -2405, 5544, -2661, 2678, -2543, -1075, -2622, -5497, -2721, -6637, -2184)
+
+[node name="camera zoom" type="Area2D" parent="collisions"]
+position = Vector2(5389, 905)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/camera zoom"]
+position = Vector2(13, 94)
+shape = SubResource("CircleShape2D_df35n")
+
 [node name="next level" type="Node2D" parent="."]
 position = Vector2(0, 16)
 
@@ -74,47 +118,15 @@ position = Vector2(5381, 1231)
 scale = Vector2(17, 19.88)
 shape = SubResource("CircleShape2D_wjc5r")
 
-[node name="collisions" type="Node2D" parent="."]
+[node name="audio" type="Node2D" parent="."]
 
-[node name="border" type="StaticBody2D" parent="collisions"]
+[node name="music" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("6_4ktnu")
+autoplay = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions/border"]
-polygon = PackedVector2Array(-6788, -1824, -4896, -1851, -3527, -1740, -2077, -1851, -1381, -1785, -1285, -1659, -1107, -1755, -686, -1874, -5, -1844, 299, -1711, 1164, -1555, 2541, -1622, 3858, -1829, 4339, -1755, 5850, -1568, 6717, -1411, 6805, -849, 6805, -91, 6756, 441, 6746, 1062, 6717, 1663, 6460, 1800, 5535, 1938, 4924, 1840, 4520, 1643, 4530, 1200, 3978, 1357, 3446, 1702, 2511, 1988, 1319, 1850, 560, 1338, -80, 944, -1006, 1121, -1646, 1416, -2808, 1387, -3793, 1436, -4443, 1603, -4906, 1810, -5546, 1889, -6256, 1830, -6492, 1584, -6758, 806, -6640, 372, -6561, -376, -6738, -1420, -6797, -1755, -6561, -2317, -7428, -2258, -7763, 2047, -6118, 2667, 1427, 2697, 7199, 2470, 7642, 983, 7288, -2405, 5544, -2661, 2678, -2543, -1075, -2622, -5497, -2721, -6637, -2184)
+[node name="footsteps" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("7_4ktnu")
 
-[node name="camera zoom" type="Area2D" parent="collisions"]
-position = Vector2(5389, 905)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/camera zoom"]
-position = Vector2(16, 29.25)
-shape = SubResource("RectangleShape2D_r0fbq")
-
-[node name="fragments" type="Node2D" parent="."]
-
-[node name="fragment" parent="fragments" instance=ExtResource("6_kym1w")]
-position = Vector2(-5829, -1151)
-scale = Vector2(1.63447, 1.63447)
-
-[node name="fragment2" parent="fragments" instance=ExtResource("6_kym1w")]
-position = Vector2(3938, 25)
-
-[node name="fragment3" parent="fragments" instance=ExtResource("6_kym1w")]
-position = Vector2(-3471, -204)
-
-[node name="fragment4" parent="fragments" instance=ExtResource("6_kym1w")]
-position = Vector2(-3307, -347)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 4
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 32.0
-offset_top = 29.0
-offset_right = 87.0
-offset_bottom = 52.0
-theme_override_colors/font_color = Color(0.929924, 0.414413, 5.77569e-07, 1)
-theme_override_font_sizes/font_size = 40
-text = "Fragments"
-
-[connection signal="area_entered" from="next level/Area2D" to="player/fox" method="_on_runeston_area_entered"]
 [connection signal="body_entered" from="collisions/camera zoom" to="." method="_on_zoom_area_entered"]
 [connection signal="body_exited" from="collisions/camera zoom" to="." method="_on_camera_zoom_body_exited"]
+[connection signal="area_entered" from="next level/Area2D" to="player/fox" method="_on_runeston_area_entered"]

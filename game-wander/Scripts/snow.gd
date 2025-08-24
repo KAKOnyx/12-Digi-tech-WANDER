@@ -5,6 +5,7 @@ extends Node2D
 var can_zoom_camera
 
 
+
 # camera zooms out when in certain area of runestone
 func _process(_delta: float) -> void:
 	if can_zoom_camera == true:

@@ -8,6 +8,9 @@ const SPEED: float = 300.0
 
 var fragment_score : int = 0
 @export var ui : Node
+@export var fragment_collect : Node
+@export var footstep : Node
+var footstep_can_play
 
 var flipped_x: bool = false
 @onready var anim = $AnimatedSprite2D as AnimatedSprite2D 
@@ -27,6 +30,7 @@ func _physics_process(_delta: float) -> void:
 	# Movement
 	var v_direction: float = Input.get_axis("ui_up", "ui_down")
 	var h_direction: float = Input.get_axis("ui_left", "ui_right")
+	"res://Scripts/mapdirection.gd"
 	
 	var direction: Vector2 = Vector2(h_direction, v_direction).normalized()
 	velocity = direction * SPEED
@@ -40,20 +44,26 @@ func _physics_process(_delta: float) -> void:
 		anim.play("right")
 		fox_col.rotation = deg_to_rad(0)
 		play_col.rotation = deg_to_rad(0)
+		footstep_can_play = true
 	elif Input.is_action_pressed("ui_left"):
 		anim.play("left")
 		fox_col.rotation = deg_to_rad(0)
 		play_col.rotation = deg_to_rad(0)
+		footstep_can_play = true
 	elif Input.is_action_pressed("ui_up"):
 		anim.play("up")
 		fox_col.rotation = deg_to_rad(90)
 		play_col.rotation = deg_to_rad(90)
+		footstep_can_play = true
 	elif Input.is_action_pressed("ui_down"):
 		anim.play("down")
 		fox_col.rotation = deg_to_rad(90)
 		play_col.rotation = deg_to_rad(90)
+		footstep_can_play = true
 	else:
 		anim.stop()
+		footstep_can_play = false
+
 
 
 # collecting and counting fragments
@@ -62,6 +72,7 @@ func _on_fragment_touched(area: Area2D) -> void:
 		fragment_score += 1
 		ui.text = str(fragment_score)
 		print(fragment_score)
+		fragment_collect.play()
 		area.queue_free()
 
 
@@ -70,3 +81,10 @@ func _on_runestone_entered(area: Area2D) -> void:
 	if area.has_meta("nextlevel"):
 
 			get_tree().call_deferred("change_scene_to_file", area.next_level)
+
+
+func _on_footstep_timer_timeout() -> void:
+	if footstep_can_play == true:
+		footstep.play()
+	else:
+		footstep.stop()

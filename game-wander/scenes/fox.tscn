@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bytqhuq2xb23d"]
+[gd_scene load_steps=17 format=3 uid="uid://bytqhuq2xb23d"]
 
 [ext_resource type="Script" uid="uid://b47reluksfeil" path="res://Scripts/fox.gd" id="1_6b4yp"]
 [ext_resource type="Texture2D" uid="uid://bc4sypjpqnvx2" path="res://art/foxspritesheet.png" id="1_q320a"]
 [ext_resource type="Texture2D" uid="uid://dccsx1b5lx3xr" path="res://art/foxspritesheet(2).png" id="3_35nom"]
+[ext_resource type="AudioStream" uid="uid://xwiw0hncanjt" path="res://audio/footsteps-in-snow-102043.mp3" id="4_3u0el"]
+[ext_resource type="AudioStream" uid="uid://chi0j6bputgtn" path="res://audio/fragment collect sound.mp3" id="5_brrv0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_72oow"]
 radius = 31.0161
@@ -88,11 +90,13 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_35nom"]
 
-[node name="fox" type="CharacterBody2D"]
+[node name="fox" type="CharacterBody2D" node_paths=PackedStringArray("fragment_collect", "footstep")]
 scale = Vector2(1.63447, 1.63447)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_6b4yp")
+fragment_collect = NodePath("audio_stuff/fragment_ding")
+footstep = NodePath("audio_stuff/footstep")
 
 [node name="fox_collision" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -117,6 +121,20 @@ rotation = 1.5708
 scale = Vector2(3.1536, 1)
 shape = SubResource("CircleShape2D_35nom")
 
+[node name="audio_stuff" type="Node2D" parent="."]
+
+[node name="footstep" type="AudioStreamPlayer" parent="audio_stuff"]
+stream = ExtResource("4_3u0el")
+volume_db = 24.0
+
+[node name="footstep_timer" type="Timer" parent="audio_stuff/footstep"]
+wait_time = 0.5
+autostart = true
+
+[node name="fragment_ding" type="AudioStreamPlayer" parent="audio_stuff"]
+stream = ExtResource("5_brrv0")
+
+[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]
-[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="audio_stuff/footstep/footstep_timer" to="." method="_on_footstep_timer_timeout"]

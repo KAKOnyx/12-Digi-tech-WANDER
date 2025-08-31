@@ -43,7 +43,7 @@ offset_right = 87.0
 offset_bottom = 52.0
 theme_override_colors/font_color = Color(0.929924, 0.414413, 5.77569e-07, 1)
 theme_override_font_sizes/font_size = 40
-text = "Fragments"
+text = "0/12"
 
 [node name="player" type="Node2D" parent="."]
 position = Vector2(-5893, 1230)
@@ -77,19 +77,22 @@ tile_set = SubResource("TileSet_egsxx")
 [node name="fragments" type="Node2D" parent="."]
 
 [node name="fragment" parent="fragments" instance=ExtResource("4_gppo8")]
-position = Vector2(-5829, -1151)
-scale = Vector2(1.63447, 1.63447)
+position = Vector2(-5746, 1001)
 
 [node name="fragment2" parent="fragments" instance=ExtResource("4_gppo8")]
-position = Vector2(3938, 25)
+position = Vector2(-5180, 753)
 
 [node name="fragment3" parent="fragments" instance=ExtResource("4_gppo8")]
-position = Vector2(-4901, 602)
+position = Vector2(-5817, -1137)
 
 [node name="fragment4" parent="fragments" instance=ExtResource("4_gppo8")]
-position = Vector2(-418, -1219)
+position = Vector2(3958, 177)
+
+[node name="fragment5" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(1598, 1071)
 
 [node name="collisions" type="Node2D" parent="."]
+visible = false
 
 [node name="border" type="StaticBody2D" parent="collisions"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxqbuq1580br5"]
+[gd_scene load_steps=6 format=3 uid="uid://cxqbuq1580br5"]
 
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="1_yhe61"]
 [ext_resource type="Texture2D" uid="uid://d2cksegh2x6uw" path="res://art/desert.png" id="2_ruvb5"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="3_02jo6"]
+[ext_resource type="PackedScene" uid="uid://cbxhv5ptxtwkh" path="res://scenes/fragment.tscn" id="4_ruvb5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjswm"]
 radius = 13.2362
@@ -42,3 +43,20 @@ shape = SubResource("CircleShape2D_rjswm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions/StaticBody2D"]
 polygon = PackedVector2Array(-4856, -2881, -4980, -958, -4803, -72, -5040, 1159, -5030, 2243, -4655, 2814, -3473, 2903, -1779, 2666, -56, 2666, 1767, 2558, 2860, 2450, 3392, 2745, 3835, 2873, 4475, 2735, 4643, 2459, 4525, 2026, 4032, 1435, 3786, 982, 3609, 56, 3628, -614, 3943, -1549, 4140, -2357, 3540, -2721, 2042, -2810, 1668, -2633, 949, -2840, 447, -2840, 151, -2623, -1109, -2564, -2873, -2731, -4232, -2938, -4839, -2920, -5512, -3204, -1543, -3628, 4899, -3421, 5450, -3244, 5490, 3060, 3441, 3326, -5443, 3326, -5229, -3409)
+
+[node name="fragments" type="Node2D" parent="."]
+
+[node name="fragment" parent="fragments" instance=ExtResource("4_ruvb5")]
+position = Vector2(-4012, -2203)
+
+[node name="fragment2" parent="fragments" instance=ExtResource("4_ruvb5")]
+position = Vector2(1728, -914)
+
+[node name="fragment3" parent="fragments" instance=ExtResource("4_ruvb5")]
+position = Vector2(1307, 787)
+
+[node name="fragment4" parent="fragments" instance=ExtResource("4_ruvb5")]
+position = Vector2(4119, 2354)
+
+[node name="fragment5" parent="fragments" instance=ExtResource("4_ruvb5")]
+position = Vector2(-3895, 688)

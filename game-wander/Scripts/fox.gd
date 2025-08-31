@@ -41,39 +41,53 @@ func _physics_process(_delta: float) -> void:
 	
 	# direction/rotation based on movement input for animated sprite and collision shapes
 	if Input.is_action_pressed("ui_right"):
-		anim.play("right")
-		fox_col.rotation = deg_to_rad(0)
-		play_col.rotation = deg_to_rad(0)
-		footstep_can_play = true
+		anim.play("right") #play walking animation
+		fox_col.rotation = deg_to_rad(0)#colliding collision rotation
+		play_col.rotation = deg_to_rad(0)#interacting collision rotation
+		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_left"):
-		anim.play("left")
-		fox_col.rotation = deg_to_rad(0)
-		play_col.rotation = deg_to_rad(0)
-		footstep_can_play = true
+		anim.play("left") #play walking animation
+		fox_col.rotation = deg_to_rad(0)#colliding collision rotation
+		play_col.rotation = deg_to_rad(0)#interacting collision rotation
+		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_up"):
-		anim.play("up")
-		fox_col.rotation = deg_to_rad(90)
-		play_col.rotation = deg_to_rad(90)
-		footstep_can_play = true
+		anim.play("up") #play walking animation
+		fox_col.rotation = deg_to_rad(90)#colliding collision rotation
+		play_col.rotation = deg_to_rad(90)#interacting collision rotation
+		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_down"):
-		anim.play("down")
-		fox_col.rotation = deg_to_rad(90)
-		play_col.rotation = deg_to_rad(90)
-		footstep_can_play = true
+		anim.play("down") #play walking animation
+		fox_col.rotation = deg_to_rad(90)#colliding collision rotation
+		play_col.rotation = deg_to_rad(90)#interacting collision rotation
+		footstep_can_play = true#footstep audio check
 	else:
 		anim.stop()
 		footstep_can_play = false
 
 
-
-# collecting and counting fragments
+# collecting and counting fragments + sound effect
 func _on_fragment_touched(area: Area2D) -> void:
 	if area.has_meta("fragment"):
-		fragment_score += 1
+		fragment_score += 1 #adding score
 		ui.text = str(fragment_score)
-		print(fragment_score)
-		fragment_collect.play()
-		area.queue_free()
+		print(fragment_score) #visual score
+		Global.fragments.append(area)
+		area.queue_free()#removing instance
+		var iteration: int = 0
+		for fragment in Global.fragments:
+			fragment_collect.pitch_scale = Global.pitches[iteration]
+			fragment_collect.play() #sound effect
+			#await fragment_collect.finished
+			await get_tree().create_timer(0.8).timeout
+			iteration += 1
+		
+
+#footstep sound effect
+func _on_footstep_timer_timeout() -> void:
+	if footstep_can_play == true:
+		footstep.play()
+	else:
+		footstep.stop()
 
 
 # next level function
@@ -81,10 +95,3 @@ func _on_runestone_entered(area: Area2D) -> void:
 	if area.has_meta("nextlevel"):
 
 			get_tree().call_deferred("change_scene_to_file", area.next_level)
-
-
-func _on_footstep_timer_timeout() -> void:
-	if footstep_can_play == true:
-		footstep.play()
-	else:
-		footstep.stop()

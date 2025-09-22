@@ -3,7 +3,7 @@ class_name Fox
 extends CharacterBody2D
 
 
-const SPEED: float = 300.0
+const SPEED: float = 150.0
 
 
 var fragment_score : int = 0
@@ -51,12 +51,10 @@ func _physics_process(_delta: float) -> void:
 		play_col.rotation = deg_to_rad(0)#interacting collision rotation
 		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_up"):
-		anim.play("up") #play walking animation
 		fox_col.rotation = deg_to_rad(90)#colliding collision rotation
 		play_col.rotation = deg_to_rad(90)#interacting collision rotation
 		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_down"):
-		anim.play("down") #play walking animation
 		fox_col.rotation = deg_to_rad(90)#colliding collision rotation
 		play_col.rotation = deg_to_rad(90)#interacting collision rotation
 		footstep_can_play = true#footstep audio check

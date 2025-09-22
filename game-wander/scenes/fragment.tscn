@@ -4,7 +4,7 @@
 size = Vector2(40, 40)
 
 [node name="fragment" type="Area2D"]
-scale = Vector2(0.431499, 0.431499)
+scale = Vector2(0.313935, 0.313935)
 metadata/fragment = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://3mrlelhjp0yy"]
+
+[ext_resource type="Texture2D" uid="uid://byljd14h5c2fd" path="res://art/snow(path).png" id="1_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="2_6uqi0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Snow(path)" type="Sprite2D" parent="."]
+position = Vector2(-863, 1644)
+texture = ExtResource("1_8uh7m")
+
+[node name="fox" parent="." instance=ExtResource("2_6uqi0")]
+position = Vector2(-6669, 2895)
+
+[node name="Camera2D" type="Camera2D" parent="fox"]

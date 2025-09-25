@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bytqhuq2xb23d"]
+[gd_scene load_steps=9 format=3 uid="uid://bytqhuq2xb23d"]
 
 [ext_resource type="Script" uid="uid://b47reluksfeil" path="res://Scripts/fox.gd" id="1_6b4yp"]
 [ext_resource type="Texture2D" uid="uid://l5hxovax4mc4" path="res://art/fox(base).png" id="2_2g4xt"]
@@ -6,14 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://xwiw0hncanjt" path="res://audio/footsteps-in-snow-102043.mp3" id="4_3u0el"]
 [ext_resource type="AudioStream" uid="uid://chi0j6bputgtn" path="res://audio/fragment collect sound.mp3" id="5_brrv0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5q2l"]
-size = Vector2(20.0983, 89.7244)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2g4xt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_brrv0"]
 atlas = ExtResource("2_2g4xt")
 region = Rect2(0, 0, 42, 28)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5q2l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g4xt"]
 atlas = ExtResource("3_brrv0")
 region = Rect2(0, 0, 42, 28)
 
@@ -21,7 +18,7 @@ region = Rect2(0, 0, 42, 28)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2g4xt")
+"texture": SubResource("AtlasTexture_brrv0")
 }],
 "loop": true,
 "name": &"left",
@@ -29,15 +26,12 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m5q2l")
+"texture": SubResource("AtlasTexture_2g4xt")
 }],
 "loop": true,
 "name": &"right",
 "speed": 3.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ael4"]
-size = Vector2(6.37312, 28.7118)
 
 [node name="fox" type="CharacterBody2D" node_paths=PackedStringArray("fragment_collect", "footstep")]
 scale = Vector2(0.696577, 0.696577)
@@ -47,28 +41,17 @@ script = ExtResource("1_6b4yp")
 fragment_collect = NodePath("audio_stuff/fragment_ding")
 footstep = NodePath("audio_stuff/footstep")
 
-[node name="fox_collision" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(5.74236, 10.0491)
-rotation = 1.5708
-scale = Vector2(1, 0.32)
-shape = SubResource("RectangleShape2D_m5q2l")
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.717795, -8.9407e-07)
+scale = Vector2(2.08161, 1.43559)
+polygon = PackedVector2Array(-4.48276, -9, -4.48276, -7, -6.55172, -4, -4.48276, 6.22788e-07, -3.10345, -2, 2.41379, -3, 3.7931, -4, 4.48276, -10, 7.24138, -10, 9.31034, -6, 10.6897, -6, 10.6897, -4, 10, -3, 7.24138, -2, 7.24138, 2, 5.17241, 5, 5.17241, 10, 2.41379, 8, 2.41379, 10, 1.03448, 10, 1.03448, 4, -1.72414, 7, -2.41379, 8, -2.41379, 10, -5.17241, 10, -5.86207, 1, -7.24138, 1, -9.31034, -2, -9.31034, -4, -7.24138, -8)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 texture_filter = 1
-position = Vector2(5.74236, 10.0491)
-scale = Vector2(0.691194, 0.691194)
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_35nom")
 animation = &"right"
-
-[node name="player_collision" type="Area2D" parent="."]
-
-[node name="player_collison_shape" type="CollisionShape2D" parent="player_collision"]
-position = Vector2(5.74236, 10.0491)
-rotation = 1.5708
-scale = Vector2(3.1536, 1)
-shape = SubResource("RectangleShape2D_0ael4")
 
 [node name="audio_stuff" type="Node2D" parent="."]
 
@@ -84,7 +67,14 @@ autostart = true
 stream = ExtResource("5_brrv0")
 pitch_scale = 0.7
 
-[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
-[connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]
+[node name="player_collision" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player_collision"]
+position = Vector2(-0.717795, -8.9407e-07)
+scale = Vector2(2.08161, 1.43559)
+polygon = PackedVector2Array(-4.48276, -9, -4.48276, -7, -6.55172, -4, -4.48276, 6.22788e-07, -3.10345, -2, 2.41379, -3, 3.7931, -4, 4.48276, -10, 7.24138, -10, 9.31034, -6, 10.6897, -6, 10.6897, -4, 10, -3, 7.24138, -2, 7.24138, 2, 5.17241, 5, 5.17241, 10, 2.41379, 8, 2.41379, 10, 1.03448, 10, 1.03448, 4, -1.72414, 7, -2.41379, 8, -2.41379, 10, -5.17241, 10, -5.86207, 1, -7.24138, 1, -9.31034, -2, -9.31034, -4, -7.24138, -8)
+
 [connection signal="timeout" from="audio_stuff/footstep/footstep_timer" to="." method="_on_footstep_timer_timeout"]
+[connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
+[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]

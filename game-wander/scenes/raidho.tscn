@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://d37bxlq1p2ra"]
+[gd_scene load_steps=14 format=4 uid="uid://d37bxlq1p2ra"]
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_7ybgv"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="2_y4omv"]
-[ext_resource type="Texture2D" uid="uid://byljd14h5c2fd" path="res://art/snow(path).png" id="3_k8ftm"]
 [ext_resource type="PackedScene" uid="uid://cbxhv5ptxtwkh" path="res://scenes/fragment.tscn" id="4_gppo8"]
 [ext_resource type="Texture2D" uid="uid://ciobe3m3att87" path="res://art/R-floor.png" id="4_y4omv"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="5_nwjla"]
@@ -23,10 +22,13 @@ texture = SubResource("CompressedTexture2D_df35n")
 physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_8citc")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_df35n"]
-radius = 776.01
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k8ftm"]
+radius = 92.9113
+height = 259.394
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gppo8"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gppo8"]
+radius = 28.6339
+height = 98.0476
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8ftm"]
 size = Vector2(6.88873, 4.44464)
@@ -50,10 +52,9 @@ theme_override_font_sizes/font_size = 40
 text = "0/12"
 
 [node name="player" type="Node2D" parent="."]
-position = Vector2(-5489, -1031)
+position = Vector2(-5783, -1207)
 
 [node name="fox" parent="player" node_paths=PackedStringArray("ui") instance=ExtResource("2_y4omv")]
-z_index = 3
 position = Vector2(4385, 1107)
 ui = NodePath("../../UI/CanvasLayer/Label")
 metadata/player = true
@@ -69,15 +70,13 @@ rotation_smoothing_enabled = true
 
 [node name="art" type="Node2D" parent="."]
 
-[node name="Snow(path)" type="Sprite2D" parent="art"]
-visible = false
-texture = ExtResource("3_k8ftm")
-
 [node name="R-assets" type="Sprite2D" parent="art"]
-z_index = 4
+z_index = 1
+y_sort_enabled = true
 texture = ExtResource("8_k8ftm")
 
 [node name="R-floor" type="Sprite2D" parent="art"]
+z_index = -1
 texture = ExtResource("4_y4omv")
 
 [node name="tilemap" type="Node2D" parent="."]
@@ -107,14 +106,120 @@ position = Vector2(-126, 64)
 [node name="camera zoom" type="Area2D" parent="collisions"]
 position = Vector2(5389, 905)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/camera zoom"]
-position = Vector2(13, 94)
-shape = SubResource("CircleShape2D_df35n")
+[node name="collision" type="CollisionShape2D" parent="collisions/camera zoom"]
+position = Vector2(-4105, -1074)
+rotation = 1.71869
+shape = SubResource("CapsuleShape2D_k8ftm")
 
-[node name="border" type="Area2D" parent="collisions"]
+[node name="next level" type="Area2D" parent="collisions"]
+script = ExtResource("5_nwjla")
+next_level = "res://scenes/eihwaz.tscn"
+metadata/nextlevel = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/border"]
-shape = SubResource("RectangleShape2D_gppo8")
+[node name="collision2" type="CollisionShape2D" parent="collisions/next level"]
+position = Vector2(1334, -225)
+rotation = -1.34898
+shape = SubResource("CapsuleShape2D_gppo8")
+
+[node name="trees" type="StaticBody2D" parent="collisions"]
+
+[node name="T1 - 1" type="CollisionPolygon2D" parent="collisions/trees"]
+polygon = PackedVector2Array(-1416, -241, -1450, -241, -1454, -243, -1454, -247, -1448, -253, -1446, -253, -1428, -253, -1428, -251, -1416, -243)
+
+[node name="T1 - 5" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(-28, 106)
+polygon = PackedVector2Array(-1416, -241, -1450, -241, -1454, -243, -1454, -247, -1448, -253, -1446, -253, -1428, -253, -1428, -251, -1416, -243)
+
+[node name="T1 - 3" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(45, -72)
+polygon = PackedVector2Array(-1416, -241, -1450, -241, -1454, -243, -1454, -247, -1448, -253, -1446, -253, -1428, -253, -1428, -251, -1416, -243)
+
+[node name="T1 - 4" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(124, -90)
+polygon = PackedVector2Array(-1416, -241, -1450, -241, -1454, -243, -1454, -247, -1448, -253, -1446, -253, -1428, -253, -1428, -251, -1416, -243)
+
+[node name="T1 - 2" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(-2674, 228)
+rotation = -3.14159
+scale = Vector2(1, -1)
+polygon = PackedVector2Array(-1416, -241, -1450, -241, -1454, -243, -1454, -247, -1448, -253, -1446, -253, -1428, -253, -1428, -251, -1416, -243)
+
+[node name="T2 - 1" type="CollisionPolygon2D" parent="collisions/trees"]
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 6" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(-2716, -115)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 2" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(-114, 130)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 3" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(-97, -24)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 5" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(-132, -75)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 4" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(107, -80)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 8" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(242, -60)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 9" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(316, -86)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T2 - 7" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(198, -122)
+polygon = PackedVector2Array(-1375, -241, -1384, -233, -1384, -229, -1376, -227, -1368, -225, -1356, -227, -1354, -231, -1354, -235, -1360, -240, -1360, -242, -1375, -242)
+
+[node name="T3 - 1" type="CollisionPolygon2D" parent="collisions/trees"]
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T3 - 4" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(31, -270)
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T3 - 5" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(217, -266)
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T3 - 6" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(273, -224)
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T3 - 7" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(359, -278)
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T3 - 2" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(305, -12)
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T3 - 3" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(166, 74)
+polygon = PackedVector2Array(-1454, -83, -1454, -79, -1460, -75, -1460, -73, -1454, -71, -1442, -71, -1436, -73, -1436, -75, -1440, -79, -1440, -81, -1440, -83)
+
+[node name="T4 -1" type="CollisionPolygon2D" parent="collisions/trees"]
+polygon = PackedVector2Array(-1320, -57, -1320, -53, -1322, -53, -1324, -51, -1324, -49, -1318, -47, -1316, -47, -1314, -49, -1308, -49, -1308, -51, -1310, -53, -1310, -57)
+
+[node name="T5 - 1" type="CollisionPolygon2D" parent="collisions/trees"]
+polygon = PackedVector2Array(-1414, -141, -1410, -139, -1402, -139, -1400, -141, -1400, -143, -1404, -145, -1410, -145, -1412, -145, -1414, -143)
+
+[node name="T5 - 2" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(6, -112)
+polygon = PackedVector2Array(-1414, -141, -1410, -139, -1402, -139, -1400, -141, -1400, -143, -1404, -145, -1410, -145, -1412, -145, -1414, -143)
+
+[node name="T5 - 3" type="CollisionPolygon2D" parent="collisions/trees"]
+position = Vector2(160, -32)
+polygon = PackedVector2Array(-1414, -141, -1410, -139, -1402, -139, -1400, -141, -1400, -143, -1404, -145, -1410, -145, -1412, -145, -1414, -143)
 
 [node name="next level" type="Node2D" parent="."]
 position = Vector2(0, 16)

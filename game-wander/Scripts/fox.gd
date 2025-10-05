@@ -14,8 +14,8 @@ var footstep_can_play
 
 var flipped_x: bool = false
 @onready var anim = $AnimatedSprite2D as AnimatedSprite2D 
-@onready var fox_col = $fox_collision as CollisionShape2D #colliding with objects
-@onready var play_col = $player_collision/player_collison_shape as CollisionShape2D #interacting with objects
+#@onready var fox_col = $fox_collision as CollisionShape2D #colliding with objects
+#@onready var play_col = $player_collision/player_collison_shape as CollisionShape2D #interacting with objects
 
 
 
@@ -39,32 +39,34 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_pressed("ui_esc"):
-		get_tree().call_deferred("res://scenes/titlescreen.tscn")
+		print("escape")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/titlescreen.tscn")
 	
 	# direction/rotation based on movement input for animated sprite and collision shapes
 	if Input.is_action_pressed("ui_right"):
 		anim.play("right") #play walking animation
-		fox_col.rotation = deg_to_rad(0)#colliding collision rotation
-		play_col.rotation = deg_to_rad(0)#interacting collision rotation
+		#fox_col.rotation = deg_to_rad(0)#colliding collision rotation
+		#play_col.rotation = deg_to_rad(0)#interacting collision rotation
 		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_left"):
 		anim.play("left") #play walking animation
-		fox_col.rotation = deg_to_rad(0)#colliding collision rotation
-		play_col.rotation = deg_to_rad(0)#interacting collision rotation
+		#fox_col.rotation = deg_to_rad(0)#colliding collision rotation
+		#play_col.rotation = deg_to_rad(0)#interacting collision rotation
 		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_up"):
 		anim.play("up") #play walking animation
-		fox_col.rotation = deg_to_rad(90)#colliding collision rotation
-		play_col.rotation = deg_to_rad(90)#interacting collision rotation
+		#fox_col.rotation = deg_to_rad(90)#colliding collision rotation
+		#play_col.rotation = deg_to_rad(90)#interacting collision rotation
 		footstep_can_play = true#footstep audio check
 	elif Input.is_action_pressed("ui_down"):
 		anim.play("down") #play walking animation
-		fox_col.rotation = deg_to_rad(90)#colliding collision rotation
-		play_col.rotation = deg_to_rad(90)#interacting collision rotation
+		#fox_col.rotation = deg_to_rad(90)#colliding collision rotation
+		#play_col.rotation = deg_to_rad(90)#interacting collision rotation
 		footstep_can_play = true#footstep audio check
 	else:
-		anim.stop()
 		footstep_can_play = false
+		anim.stop()
+		
 
 
 # collecting and counting fragments + sound effect
@@ -82,7 +84,10 @@ func _on_fragment_touched(area: Area2D) -> void:
 			#await fragment_collect.finished
 			await get_tree().create_timer(0.8).timeout
 			iteration += 1
+
+	
 		
+	
 
 #footstep sound effect
 func _on_footstep_timer_timeout() -> void:

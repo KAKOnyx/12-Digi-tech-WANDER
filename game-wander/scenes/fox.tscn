@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b47reluksfeil" path="res://Scripts/fox.gd" id="1_6b4yp"]
 [ext_resource type="Texture2D" uid="uid://l5hxovax4mc4" path="res://art/fox(base).png" id="2_2g4xt"]
 [ext_resource type="Texture2D" uid="uid://dsld8vx1mbghd" path="res://art/fox(base)right.png" id="3_brrv0"]
-[ext_resource type="AudioStream" uid="uid://xwiw0hncanjt" path="res://audio/footsteps-in-snow-102043.mp3" id="4_3u0el"]
+[ext_resource type="AudioStream" uid="uid://cw06vmml5j32c" path="res://audio/soft footsteps.wav" id="4_brrv0"]
 [ext_resource type="AudioStream" uid="uid://chi0j6bputgtn" path="res://audio/fragment collect sound.mp3" id="5_brrv0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brrv0"]
@@ -56,8 +56,8 @@ animation = &"right"
 [node name="audio_stuff" type="Node2D" parent="."]
 
 [node name="footstep" type="AudioStreamPlayer" parent="audio_stuff"]
-stream = ExtResource("4_3u0el")
-volume_db = 24.0
+stream = ExtResource("4_brrv0")
+volume_db = 1.0
 
 [node name="footstep_timer" type="Timer" parent="audio_stuff/footstep"]
 wait_time = 0.5

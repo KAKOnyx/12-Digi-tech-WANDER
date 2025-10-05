@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://d37bxlq1p2ra"]
+[gd_scene load_steps=13 format=4 uid="uid://d37bxlq1p2ra"]
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_7ybgv"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="2_y4omv"]
 [ext_resource type="PackedScene" uid="uid://cbxhv5ptxtwkh" path="res://scenes/fragment.tscn" id="4_gppo8"]
 [ext_resource type="Texture2D" uid="uid://ciobe3m3att87" path="res://art/R-floor.png" id="4_y4omv"]
 [ext_resource type="Script" uid="uid://chvqfoorrcgoc" path="res://Scripts/runestone.gd" id="5_nwjla"]
-[ext_resource type="AudioStream" uid="uid://brus6he6idopv" path="res://audio/Comfortable Mystery 2.mp3" id="6_u2lvr"]
 [ext_resource type="Texture2D" uid="uid://romnmnp26k17" path="res://art/R-assets.png" id="8_k8ftm"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_df35n"]
@@ -52,7 +51,7 @@ theme_override_font_sizes/font_size = 40
 text = "0/12"
 
 [node name="player" type="Node2D" parent="."]
-position = Vector2(-5783, -1207)
+position = Vector2(-5669, -955)
 
 [node name="fox" parent="player" node_paths=PackedStringArray("ui") instance=ExtResource("2_y4omv")]
 position = Vector2(4385, 1107)
@@ -90,6 +89,39 @@ tile_set = SubResource("TileSet_egsxx")
 [node name="fragments" type="Node2D" parent="."]
 
 [node name="fragment2" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment6" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment7" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment8" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment9" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment10" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment11" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment12" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment13" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment14" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment15" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(-1140, 112)
+
+[node name="fragment16" parent="fragments" instance=ExtResource("4_gppo8")]
 position = Vector2(-1140, 112)
 
 [node name="fragment3" parent="fragments" instance=ExtResource("4_gppo8")]
@@ -238,7 +270,6 @@ shape = SubResource("RectangleShape2D_k8ftm")
 [node name="audio" type="Node2D" parent="."]
 
 [node name="music" type="AudioStreamPlayer" parent="audio"]
-stream = ExtResource("6_u2lvr")
 autoplay = true
 
 [connection signal="body_entered" from="collisions/camera zoom" to="." method="_on_zoom_area_entered"]

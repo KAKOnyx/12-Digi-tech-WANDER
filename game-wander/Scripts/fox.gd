@@ -18,8 +18,6 @@ var flipped_x: bool = false
 #@onready var play_col = $player_collision/player_collison_shape as CollisionShape2D #interacting with objects
 
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -44,50 +42,49 @@ func _physics_process(_delta: float) -> void:
 	
 	# direction/rotation based on movement input for animated sprite and collision shapes
 	if Input.is_action_pressed("ui_right"):
-		anim.play("right") #play walking animation
-		#fox_col.rotation = deg_to_rad(0)#colliding collision rotation
-		#play_col.rotation = deg_to_rad(0)#interacting collision rotation
-		footstep_can_play = true#footstep audio check
+		anim.play("right") # play walking animation
+		#fox_col.rotation = deg_to_rad(0) # colliding collision rotation
+		#play_col.rotation = deg_to_rad(0) # interacting collision rotation
+		footstep_can_play = true # footstep audio check
 	elif Input.is_action_pressed("ui_left"):
-		anim.play("left") #play walking animation
-		#fox_col.rotation = deg_to_rad(0)#colliding collision rotation
-		#play_col.rotation = deg_to_rad(0)#interacting collision rotation
-		footstep_can_play = true#footstep audio check
+		anim.play("left") # play walking animation
+		#fox_col.rotation = deg_to_rad(0) # colliding collision rotation
+		#play_col.rotation = deg_to_rad(0) # interacting collision rotation
+		footstep_can_play = true # footstep audio check
 	elif Input.is_action_pressed("ui_up"):
-		anim.play("up") #play walking animation
-		#fox_col.rotation = deg_to_rad(90)#colliding collision rotation
-		#play_col.rotation = deg_to_rad(90)#interacting collision rotation
-		footstep_can_play = true#footstep audio check
+		anim.play("up") # play walking animation
+		#fox_col.rotation = deg_to_rad(90) # colliding collision rotation
+		#play_col.rotation = deg_to_rad(90) # interacting collision rotation
+		footstep_can_play = true # footstep audio check
 	elif Input.is_action_pressed("ui_down"):
-		anim.play("down") #play walking animation
-		#fox_col.rotation = deg_to_rad(90)#colliding collision rotation
-		#play_col.rotation = deg_to_rad(90)#interacting collision rotation
-		footstep_can_play = true#footstep audio check
+		anim.play("down") # play walking animation
+		#fox_col.rotation = deg_to_rad(90) # colliding collision rotation
+		#play_col.rotation = deg_to_rad(90) # interacting collision rotation
+		footstep_can_play = true # footstep audio check
 	else:
 		footstep_can_play = false
 		anim.stop()
 		
 
-
 # collecting and counting fragments + sound effect
 func _on_fragment_touched(area: Area2D) -> void:
 	if area.has_meta("fragment"):
-		fragment_score += 1 #adding score
+		fragment_score += 1 # adding score
 		ui.text = str(fragment_score)
-		print(fragment_score) #visual score
+		print(fragment_score) # visual score
 		Global.fragments.append(area)
-		area.queue_free()#removing instance
+		area.queue_free() # removing instance
 		var iteration: int = 0
 		for fragment in Global.fragments:
+			if iteration >= 12:
+				break
+			print("going")
 			fragment_collect.pitch_scale = Global.pitches[iteration]
-			fragment_collect.play() #sound effect
+			fragment_collect.play() # sound effect
 			#await fragment_collect.finished
 			await get_tree().create_timer(0.8).timeout
 			iteration += 1
 
-	
-		
-	
 
 #footstep sound effect
 func _on_footstep_timer_timeout() -> void:
@@ -100,5 +97,7 @@ func _on_footstep_timer_timeout() -> void:
 # next level function
 func _on_runestone_entered(area: Area2D) -> void:
 	if area.has_meta("nextlevel"):
-
-			get_tree().call_deferred("change_scene_to_file", area.next_level)
+		TransitionScreen._transition()
+		await TransitionScreen.on_transition_finished
+			
+		get_tree().call_deferred("change_scene_to_file", area.next_level)

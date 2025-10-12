@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dif48370lv1st"
+path="res://.godot/imported/between stars.mp3-51865bd375b891d06d18fc68952b9a99.mp3str"
+
+[deps]
+
+source_file="res://audio/between stars.mp3"
+dest_files=["res://.godot/imported/between stars.mp3-51865bd375b891d06d18fc68952b9a99.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

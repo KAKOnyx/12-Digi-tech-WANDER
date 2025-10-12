@@ -60,7 +60,7 @@ stream = ExtResource("4_brrv0")
 volume_db = 1.0
 
 [node name="footstep_timer" type="Timer" parent="audio_stuff/footstep"]
-wait_time = 0.5
+wait_time = 0.25
 autostart = true
 
 [node name="fragment_ding" type="AudioStreamPlayer" parent="audio_stuff"]
@@ -75,6 +75,6 @@ scale = Vector2(2.08161, 1.43559)
 polygon = PackedVector2Array(-4.48276, -9, -4.48276, -7, -6.55172, -4, -4.48276, 6.22788e-07, -3.10345, -2, 2.41379, -3, 3.7931, -4, 4.48276, -10, 7.24138, -10, 9.31034, -6, 10.6897, -6, 10.6897, -4, 10, -3, 7.24138, -2, 7.24138, 2, 5.17241, 5, 5.17241, 10, 2.41379, 8, 2.41379, 10, 1.03448, 10, 1.03448, 4, -1.72414, 7, -2.41379, 8, -2.41379, 10, -5.17241, 10, -5.86207, 1, -7.24138, 1, -9.31034, -2, -9.31034, -4, -7.24138, -8)
 
 [connection signal="timeout" from="audio_stuff/footstep/footstep_timer" to="." method="_on_footstep_timer_timeout"]
-[connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]

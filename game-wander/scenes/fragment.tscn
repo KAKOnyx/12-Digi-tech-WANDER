@@ -1,19 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbxhv5ptxtwkh"]
+[gd_scene load_steps=3 format=3 uid="uid://cbxhv5ptxtwkh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cricy"]
-size = Vector2(40, 40)
+[ext_resource type="Texture2D" uid="uid://dnomgvx3a8nof" path="res://art/fragment.png" id="1_seiiw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_seiiw"]
+radius = 19.1122
 
 [node name="fragment" type="Area2D"]
 scale = Vector2(0.313935, 0.313935)
 metadata/fragment = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_cricy")
+[node name="Fragment" type="Sprite2D" parent="."]
+scale = Vector2(1.69451, 1.69451)
+texture = ExtResource("1_seiiw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-pivot_offset = Vector2(19, 19)
-color = Color(1, 0.701961, 0.215686, 1)
-metadata/_edit_use_anchors_ = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_seiiw")

@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 Global="*res://Scripts/global.gd"
+TransitionScreen="*res://scenes/transition_screen.tscn"
 
 [display]
 

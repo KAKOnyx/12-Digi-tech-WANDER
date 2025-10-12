@@ -25,7 +25,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	# Movement
+	# Movement - inputs
 	var v_direction: float = Input.get_axis("ui_up", "ui_down")
 	var h_direction: float = Input.get_axis("ui_left", "ui_right")
 	"res://Scripts/mapdirection.gd"
@@ -82,22 +82,22 @@ func _on_fragment_touched(area: Area2D) -> void:
 			fragment_collect.pitch_scale = Global.pitches[iteration]
 			fragment_collect.play() # sound effect
 			#await fragment_collect.finished
-			await get_tree().create_timer(0.8).timeout
-			iteration += 1
+			await get_tree().create_timer(0.8).timeout # wait for timer to finish
+			iteration += 1 # increses the fragment amount counter by one
 
 
 #footstep sound effect
 func _on_footstep_timer_timeout() -> void:
-	if footstep_can_play == true:
-		footstep.play()
+	if footstep_can_play == true: # checks if footstep audio can play
+		footstep.play() # plays audio
 	else:
-		footstep.stop()
+		footstep.stop() # if footstep audio can't play, stops audio
 
 
 # next level function
 func _on_runestone_entered(area: Area2D) -> void:
-	if area.has_meta("nextlevel"):
+	if area.has_meta("nextlevel"): # checks for meta of area close around runestone
 		TransitionScreen._transition()
-		await TransitionScreen.on_transition_finished
+		await TransitionScreen.on_transition_finished # waits for the on_transition_signal to emit
 			
-		get_tree().call_deferred("change_scene_to_file", area.next_level)
+		get_tree().call_deferred("change_scene_to_file", area.next_level) # changes scene to title screen

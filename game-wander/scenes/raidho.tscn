@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d37bxlq1p2ra"]
+[gd_scene load_steps=19 format=3 uid="uid://d37bxlq1p2ra"]
 
 [ext_resource type="Script" uid="uid://cyx663voj4kim" path="res://Scripts/snow.gd" id="1_7ybgv"]
 [ext_resource type="PackedScene" uid="uid://bytqhuq2xb23d" path="res://scenes/fox.tscn" id="2_y4omv"]
@@ -18,12 +18,21 @@
 radius = 92.9113
 height = 259.394
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvnsu"]
+radius = 2.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ameb0"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbax4"]
+radius = 2.0
+height = 10.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gppo8"]
 radius = 28.6339
 height = 98.0476
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8ftm"]
-size = Vector2(6.88873, 4.44464)
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_7ybgv")
@@ -41,10 +50,10 @@ offset_right = 87.0
 offset_bottom = 52.0
 theme_override_colors/font_color = Color(0.929924, 0.414413, 5.77569e-07, 1)
 theme_override_font_sizes/font_size = 40
-text = "0/12"
+text = "Collect 12 Fragments"
 
 [node name="player" type="Node2D" parent="."]
-position = Vector2(-5664, -927)
+position = Vector2(-5679, -925)
 
 [node name="fox" parent="player" node_paths=PackedStringArray("ui") instance=ExtResource("2_y4omv")]
 position = Vector2(4385, 1107)
@@ -148,29 +157,20 @@ position = Vector2(-359, -339)
 position = Vector2(409, 12)
 
 [node name="fragment12" parent="fragments" instance=ExtResource("4_gppo8")]
-position = Vector2(1264, -150)
+position = Vector2(1242, -133)
+
+[node name="fragment13" parent="fragments" instance=ExtResource("4_gppo8")]
+position = Vector2(1288, -176)
 
 [node name="collisions" type="Node2D" parent="."]
 
 [node name="camera zoom" type="Area2D" parent="collisions"]
 position = Vector2(5389, 905)
 
-[node name="collision" type="CollisionShape2D" parent="collisions/camera zoom"]
+[node name="lerp" type="CollisionShape2D" parent="collisions/camera zoom"]
 position = Vector2(-4105, -1074)
 rotation = 1.71869
 shape = SubResource("CapsuleShape2D_k8ftm")
-
-[node name="next level" type="Area2D" parent="collisions"]
-script = ExtResource("5_nwjla")
-next_level = "res://scenes/titlescreen.tscn"
-metadata/nextlevel = false
-
-[node name="collision2" type="CollisionShape2D" parent="collisions/next level"]
-position = Vector2(1334, -225)
-rotation = -1.34898
-shape = SubResource("CapsuleShape2D_gppo8")
-
-[node name="next_level_timer" type="Timer" parent="collisions/next level/collision2"]
 
 [node name="trees" type="StaticBody2D" parent="collisions"]
 
@@ -378,19 +378,36 @@ polygon = PackedVector2Array(-1257, 129, -1264, 132, -1260, 136, -1254, 138, -12
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="collisions/everything else"]
 polygon = PackedVector2Array(-1166, 115, -1170, 115, -1170, 117, -1166, 117)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/everything else"]
+position = Vector2(394, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wvnsu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collisions/everything else"]
+position = Vector2(418, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ameb0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="collisions/everything else"]
+position = Vector2(417, 24)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbax4")
+
 [node name="next level" type="Node2D" parent="."]
 position = Vector2(0, 16)
 
-[node name="Area2D" type="Area2D" parent="next level"]
+[node name="next level" type="Area2D" parent="next level"]
+position = Vector2(0, -16)
 script = ExtResource("5_nwjla")
-next_level = "res://scenes/desert.tscn"
-metadata/snow = false
-metadata/nextlevel = true
+next_level = "res://scenes/titlescreen.tscn"
+metadata/nextlevel = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="next level/Area2D"]
-position = Vector2(1335, -251.5)
-scale = Vector2(6.09692, 4.72479)
-shape = SubResource("RectangleShape2D_k8ftm")
+[node name="collision2" type="CollisionShape2D" parent="next level/next level"]
+position = Vector2(1334, -225)
+rotation = -1.34898
+shape = SubResource("CapsuleShape2D_gppo8")
+
+[node name="next_level_timer" type="Timer" parent="next level/next level/collision2"]
 
 [node name="audio" type="Node2D" parent="."]
 
@@ -400,4 +417,3 @@ autoplay = true
 
 [connection signal="body_entered" from="collisions/camera zoom" to="." method="_on_zoom_area_entered"]
 [connection signal="body_exited" from="collisions/camera zoom" to="." method="_on_camera_zoom_body_exited"]
-[connection signal="area_entered" from="next level/Area2D" to="player/fox" method="_on_runeston_area_entered"]

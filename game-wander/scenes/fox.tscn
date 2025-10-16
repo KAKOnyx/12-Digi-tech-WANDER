@@ -41,7 +41,7 @@ script = ExtResource("1_6b4yp")
 fragment_collect = NodePath("audio_stuff/fragment_ding")
 footstep = NodePath("audio_stuff/footstep")
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+[node name="FoxColliding" type="CollisionPolygon2D" parent="."]
 position = Vector2(-0.717795, -8.9407e-07)
 scale = Vector2(2.08161, 1.43559)
 polygon = PackedVector2Array(-4.48276, -9, -4.48276, -7, -6.55172, -4, -4.48276, 6.22788e-07, -3.10345, -2, 2.41379, -3, 3.7931, -4, 4.48276, -10, 7.24138, -10, 9.31034, -6, 10.6897, -6, 10.6897, -4, 10, -3, 7.24138, -2, 7.24138, 2, 5.17241, 5, 5.17241, 10, 2.41379, 8, 2.41379, 10, 1.03448, 10, 1.03448, 4, -1.72414, 7, -2.41379, 8, -2.41379, 10, -5.17241, 10, -5.86207, 1, -7.24138, 1, -9.31034, -2, -9.31034, -4, -7.24138, -8)
@@ -69,12 +69,11 @@ pitch_scale = 0.7
 
 [node name="player_collision" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player_collision"]
+[node name="FoxInteracting" type="CollisionPolygon2D" parent="player_collision"]
 position = Vector2(-0.717795, -8.9407e-07)
 scale = Vector2(2.08161, 1.43559)
 polygon = PackedVector2Array(-4.48276, -9, -4.48276, -7, -6.55172, -4, -4.48276, 6.22788e-07, -3.10345, -2, 2.41379, -3, 3.7931, -4, 4.48276, -10, 7.24138, -10, 9.31034, -6, 10.6897, -6, 10.6897, -4, 10, -3, 7.24138, -2, 7.24138, 2, 5.17241, 5, 5.17241, 10, 2.41379, 8, 2.41379, 10, 1.03448, 10, 1.03448, 4, -1.72414, 7, -2.41379, 8, -2.41379, 10, -5.17241, 10, -5.86207, 1, -7.24138, 1, -9.31034, -2, -9.31034, -4, -7.24138, -8)
 
 [connection signal="timeout" from="audio_stuff/footstep/footstep_timer" to="." method="_on_footstep_timer_timeout"]
-[connection signal="area_entered" from="player_collision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_fragment_touched"]
 [connection signal="area_entered" from="player_collision" to="." method="_on_runestone_entered"]

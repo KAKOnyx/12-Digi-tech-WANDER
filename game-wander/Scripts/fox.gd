@@ -3,7 +3,7 @@ class_name Fox
 extends CharacterBody2D
 
 
-const SPEED: float = 100.0
+const SPEED: float = 130.0
 
 
 var fragment_score : int = 0
@@ -32,38 +32,30 @@ func _physics_process(_delta: float) -> void:
 	
 	var direction: Vector2 = Vector2(h_direction, v_direction).normalized()
 	velocity = direction * SPEED
+	@warning_ignore("standalone_expression")
 	velocity - Vector2(SPEED * h_direction, SPEED * v_direction)
 
 	move_and_slide()
 	
+	# exit main game to title screen
 	if Input.is_action_pressed("ui_esc"):
-		print("escape")
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/titlescreen.tscn")
+		print("escape") # checks input goes through
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/titlescreen.tscn") # file changes to title screen
 	
-	# direction/rotation based on movement input for animated sprite and collision shapes
+	# animation and audio playing based on user inputs/movement
 	if Input.is_action_pressed("ui_right"):
 		anim.play("right") # play walking animation
-		#fox_col.rotation = deg_to_rad(0) # colliding collision rotation
-		#play_col.rotation = deg_to_rad(0) # interacting collision rotation
-		footstep_can_play = true # footstep audio check
+		footstep_can_play = true # footstep audio can play
 	elif Input.is_action_pressed("ui_left"):
 		anim.play("left") # play walking animation
-		#fox_col.rotation = deg_to_rad(0) # colliding collision rotation
-		#play_col.rotation = deg_to_rad(0) # interacting collision rotation
-		footstep_can_play = true # footstep audio check
+		footstep_can_play = true # footstep audio can play
 	elif Input.is_action_pressed("ui_up"):
-		anim.play("up") # play walking animation
-		#fox_col.rotation = deg_to_rad(90) # colliding collision rotation
-		#play_col.rotation = deg_to_rad(90) # interacting collision rotation
-		footstep_can_play = true # footstep audio check
+		footstep_can_play = true # footstep audio can play
 	elif Input.is_action_pressed("ui_down"):
-		anim.play("down") # play walking animation
-		#fox_col.rotation = deg_to_rad(90) # colliding collision rotation
-		#play_col.rotation = deg_to_rad(90) # interacting collision rotation
-		footstep_can_play = true # footstep audio check
+		footstep_can_play = true # footstep audio can play
 	else:
-		footstep_can_play = false
-		anim.stop()
+		footstep_can_play = false # footstep audio can't play
+		anim.stop() # all animations stop
 		
 
 # collecting and counting fragments + sound effect
@@ -78,7 +70,7 @@ func _on_fragment_touched(area: Area2D) -> void:
 		for fragment in Global.fragments:
 			if iteration >= 12:
 				break
-			print("going")
+			print("ding")
 			fragment_collect.pitch_scale = Global.pitches[iteration]
 			fragment_collect.play() # sound effect
 			#await fragment_collect.finished
@@ -91,6 +83,7 @@ func _on_footstep_timer_timeout() -> void:
 	if footstep_can_play == true: # checks if footstep audio can play
 		footstep.play() # plays audio
 	else:
+		print("false")
 		footstep.stop() # if footstep audio can't play, stops audio
 
 

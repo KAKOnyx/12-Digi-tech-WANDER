@@ -11,3 +11,4 @@ func _on_play_pressed() -> void:
 
 func _ready() -> void: 
 	Global.fragments = [] # resets fragments collected when user exits to titlescreen
+	print("fragments reset")
